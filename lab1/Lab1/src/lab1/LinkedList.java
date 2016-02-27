@@ -122,18 +122,10 @@ public class LinkedList {
     public String toString() {
         DoubleNode current = first;
         ArrayList<String> output = new ArrayList<>();
-
-        if(current != null) {
-            do {            
-                output.add(current.value.toString());
-
-                if(current.next == null) {
-                    break;
-                }
-
-                current = current.next;
-
-            } while (true);
+        
+        while(current != null) {
+            output.add(current.value.toString());
+            current = current.next;
         }
         
         return "{" + String.join(",", output) + "}";
