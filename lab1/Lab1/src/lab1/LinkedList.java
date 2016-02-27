@@ -1,5 +1,8 @@
 package lab1;
 
+import java.util.ArrayList;
+
+
 public class LinkedList {
     
     private DoubleNode first;
@@ -31,7 +34,11 @@ public class LinkedList {
     }
     
     public void insertAtEnd(DoubleNode node) {
-        insertAfter(node, getLast());
+        if(first == null) {
+            insertAtBeginning(node);
+        } else {
+            insertAfter(node, getLast());
+        }
     }
     
     public DoubleNode removeFromBeginning() {
@@ -70,6 +77,10 @@ public class LinkedList {
     }
     
     public void remove(DoubleNode node) {
+        if(!ensureNodeBelongsToList(node)) {
+            return;
+        }
+        
         if(node == null) {
             return;
         }
@@ -77,37 +88,25 @@ public class LinkedList {
         DoubleNode next = node.next;
         DoubleNode prev = node.previous;
         
-        if(next != null) {
-            next.previous = prev;
-        }
-        
-        if(prev == null) {
-            first = next;
-        } else {
+        if(prev != null) {
             prev.next = next;
+            
+            if(next != null) {
+                next.previous = prev;
+            }
+        } else {
+            first = next;
         }
     }
     
     public void moveToFront(DoubleNode node) {
         remove(node);
-        
-        if(first != null) {
-            first.previous = node;
-        }
-        
-        node.previous = null;
-        node.next = first;
-        first = node;
+        insertAtBeginning(node);
     }
     
     public void moveToEnd(DoubleNode node) {
         remove(node);
-        
-        DoubleNode last = getLast();
-        
-        last.next = node;
-        node.previous = last;
-        node.next = null;
+        insertAtEnd(node);
     }
     
     public static class DoubleNode {
@@ -117,5 +116,40 @@ public class LinkedList {
         public DoubleNode(Object value) {
             this.value = value;
         }
+    }
+
+    @Override
+    public String toString() {
+        DoubleNode current = first;
+        ArrayList<String> output = new ArrayList<>();
+
+        if(current != null) {
+            do {            
+                output.add(current.value.toString());
+
+                if(current.next == null) {
+                    break;
+                }
+
+                current = current.next;
+
+            } while (true);
+        }
+        
+        return "{" + String.join(",", output) + "}";
+    }
+    
+    private boolean ensureNodeBelongsToList(DoubleNode node) {
+        DoubleNode current = first;
+
+        while(current != null) {
+            if(node == current) {
+                return true;
+            }
+            
+            current = current.next;
+        }
+        
+        return false;
     }
 }

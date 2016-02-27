@@ -19,6 +19,7 @@ public class Lab1 {
         ll.remove(first);
         ll.removeFromBeginning();
         ll.removeFromEnd();
+        System.out.println(ll);
     }
     
 }
