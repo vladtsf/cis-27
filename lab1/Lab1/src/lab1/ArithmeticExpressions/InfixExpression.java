@@ -1,7 +1,7 @@
 package lab1.ArithmeticExpressions;
 
 public class InfixExpression extends Expression {
-    private String expression;
+    private final String expression;
     
     public InfixExpression(String expression) {
         this.expression = expression;
@@ -14,6 +14,6 @@ public class InfixExpression extends Expression {
     
     @Override
     public double evaluate() {
-        return 0.0;
+        return new PostfixExpression(this).evaluate();
     }
 }
