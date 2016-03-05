@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Stack;
 
 // this implementation does not support negative values
+// only integers are supported
 public class PostfixExpression extends Expression {
     private ArrayList<String> output;
     
@@ -94,7 +95,19 @@ public class PostfixExpression extends Expression {
     
     @Override
     public double evaluate() {
-        return 0.0;
+        Stack<Double> buffer = new Stack<>();
+        
+        for(String token : output) {
+            if(isNumeric(token)) {
+                buffer.push(Double.parseDouble(token));
+            } else {
+                Double right = buffer.pop();
+                Double left = buffer.pop();
+                buffer.push(performOperation(left, token, right));
+            }
+        }
+        
+        return buffer.pop();
     }
 
     @Override

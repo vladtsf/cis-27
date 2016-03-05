@@ -31,6 +31,9 @@ public class Lab1 {
         
         // 4 8 + 6 5 - * 3 2 - 2 2 + * /
         System.out.println(new PostfixExpression(new InfixExpression("(4+8)*(6-5)/((3-2)*(2+2))"))); 
+        
+        // 3
+        System.out.println(new InfixExpression("(4+8)*(6-5)/((3-2)*(2+2))").evaluate());
     }
     
 }

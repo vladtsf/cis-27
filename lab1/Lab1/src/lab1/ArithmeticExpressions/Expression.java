@@ -4,20 +4,39 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class Expression implements IExpression {
-    public static List<Character> Operands = Arrays.asList(
+    protected static List<Character> Operands = Arrays.asList(
         '1', '2', '3', '4', '5', '6', '7'
     );
     
-    public static boolean isNumeric(Character ch) {
+    protected static boolean isNumeric(Character ch) {
+        return isNumeric(ch.toString());
+    }
+    
+    protected static boolean isNumeric(String str) {
         try {
-            Integer.parseInt(ch.toString());
+            Integer.parseInt(str);
             return true;
         } catch(Exception e) {
             return false;
         }
     }
     
-    public static class Operators {
+    protected static double performOperation(double left, String operator, double right) {
+        switch(operator) {
+            case "*":
+                return left * right;
+            case "/":
+                return left / right;
+            case "+":
+                return left + right;
+            case "-":
+                return left - right;
+        }
+        
+        return Double.NaN;
+    }
+    
+    protected static class Operators {
         public static int getPrecedence(String operator) {
             switch(operator) {
                 case "*":
