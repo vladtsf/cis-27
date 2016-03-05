@@ -1,13 +1,6 @@
 package lab1.ArithmeticExpressions;
 
-import java.util.Arrays;
-import java.util.List;
-
 public abstract class Expression implements IExpression {
-    protected static List<Character> Operands = Arrays.asList(
-        '1', '2', '3', '4', '5', '6', '7'
-    );
-    
     protected static boolean isNumeric(Character ch) {
         return isNumeric(ch.toString());
     }
