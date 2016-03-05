@@ -145,3 +145,12 @@ public class LinkedList {
         return false;
     }
 }
+
+// Output
+/*
+1. Linked Lists - Dequeue
+1: {first,last}
+2: {first,afterFirst,beforeLast,last}
+3: {last,afterFirst,beforeLast,first}
+4: {afterFirst}
+*/

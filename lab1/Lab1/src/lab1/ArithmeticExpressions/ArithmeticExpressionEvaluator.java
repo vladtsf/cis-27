@@ -15,3 +15,15 @@ public class ArithmeticExpressionEvaluator {
         System.out.format("Result: %.2f%n\n", postfix.evaluate());
     }
 }
+
+// Output
+/*
+2. Stacks - Evaluating Arithmetic Expressions
+Infix: (300+23)*(43-21)/(84+7)
+Postfix: 300 23 + 43 21 - * 84 7 + /
+Result: 78.09
+
+Infix: (4+8)*(6-5)/((3-2)*(2+2))
+Postfix: 4 8 + 6 5 - * 3 2 - 2 2 + * /
+Result: 3.00
+*/

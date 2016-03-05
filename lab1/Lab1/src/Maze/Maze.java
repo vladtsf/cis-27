@@ -35,6 +35,8 @@ public class Maze {
         }
     }
     
+    // I'm sure there's a better way to check it,
+    // but oh well...
     private boolean allCellsReachable() {
         int c1, c2, c3;
         
@@ -188,3 +190,20 @@ public class Maze {
     
     
 }
+
+
+// Output
+/*
+3. Union-Find - Maze
+ _ _ _   _ _ _ _ _ _ 
+|_ _ _ _ _ _     _ _|
+|_ _  | |  _ _|_ _ _|
+|_   _ _|  _ _ _ _ _|
+|_   _ _ _|   |    _|
+|  _  |    _|_| |_ _|
+|_|_  | |_ _ _|  _  |
+|_  |_ _  |  _|  _|_|
+|_   _ _  |  _ _|  _|
+|  _|  _      |  _  |
+|_|_ _|  _|_|_ _|_ _|
+*/
