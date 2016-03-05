@@ -27,11 +27,11 @@ public class Lab1 {
         ll.removeFromEnd();
         System.out.println("4: " + ll);
 
-        System.out.println("2. Stacks - Evaluating Arithmetic Expressions");
+        System.out.println("\n2. Stacks - Evaluating Arithmetic Expressions");
         new ArithmeticExpressionEvaluator("(300+23)*(43-21)/(84+7)").evaluate();
         new ArithmeticExpressionEvaluator("(4+8)*(6-5)/((3-2)*(2+2))").evaluate();
         
-        System.out.println("3. Union-Find - Maze");
+        System.out.println("\n3. Union-Find - Maze");
         Maze maze = new Maze(10, 10);
         maze.generate();
         System.out.println(maze);

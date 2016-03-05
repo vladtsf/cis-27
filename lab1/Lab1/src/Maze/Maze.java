@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Maze {
-    private final UnionFind union;
+    private UnionFind union;
     private final int width, height;
     private final int start, finish;
     private ArrayList<Integer> knockedWalls;
@@ -23,8 +23,9 @@ public class Maze {
     
     public void generate() {
         knockedWalls = new ArrayList<>();
+        union =  new UnionFind(width * height);
         
-        while(!union.connected(start, finish)) {
+        while(!union.connected(start, finish) || !allCellsReachable()) {
             int[] cells = pickCellPair();
             
             if(!union.connected(cells[0], cells[1])) {
@@ -32,6 +33,24 @@ public class Maze {
                 knockedWalls.add(wallID(cells[0], cells[1]));
             }
         }
+    }
+    
+    private boolean allCellsReachable() {
+        int c1, c2, c3;
+        
+        for(int x = 0; x < width - 1; x++) {
+            for(int y = 0; y < height - 1; y++) {
+                c1 = positionToID(x, y);
+                c2 = positionToID(x + 1, y);
+                c3 = positionToID(x, y + 1);
+                
+                if(!(union.connected(c1, c2) && union.connected(c1, c3))) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
     }
     
     private int[] pickCellPair() {
@@ -68,10 +87,13 @@ public class Maze {
         return new int[] {c1, c2};
     }
     
+    // every cell has a unique id.
+    // this id can be obtained from the cells (x,y) coordinates
     private int positionToID(int x, int y) {
         return y * width + x;
     }
     
+    // and an id can be converted to coordinates
     private int[] IDtoPosition(int id) {
         int x = id % width;
         int y = id / width;
@@ -79,6 +101,7 @@ public class Maze {
         return new int[] {x, y};
     }
     
+    // as cells, every wall has an id
     private int wallID(int c1, int c2) {
         int[] _c1 = IDtoPosition(c1);
         int[] _c2 = IDtoPosition(c2);
@@ -86,6 +109,8 @@ public class Maze {
     }
     
     private int wallID(int x1, int y1, int x2, int y2) {
+        // the wall between cells #1 and #2 must be
+        // the same as between #2 and #1
         if(x1 > x2) {
             int tmp = x2;
             x2 = x1;
@@ -103,6 +128,7 @@ public class Maze {
             return -1;
         }
         
+        // if the cells don't have a mutual wall
         if(x1 < 0 || x2 >= width) {
             return -1;
         } else if (y1 < 0 || y2 >= height) {
