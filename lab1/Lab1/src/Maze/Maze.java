@@ -12,7 +12,6 @@ public class Maze {
     public Maze(int w, int h) {
         Random r = new Random();
         
-        
         width = w;
         height = h;
         union = new UnionFind(w * h);
@@ -20,8 +19,53 @@ public class Maze {
         
         start = positionToID(r.nextInt(width), 0);
         finish = positionToID(r.nextInt(width), height - 1);
+    }
+    
+    public void generate() {
+        knockedWalls = new ArrayList<>();
         
-        knockedWalls.add(0);
+        while(!union.connected(start, finish)) {
+            int[] cells = pickCellPair();
+            
+            if(!union.connected(cells[0], cells[1])) {
+                union.union(cells[0], cells[1]);
+                knockedWalls.add(wallID(cells[0], cells[1]));
+            }
+        }
+    }
+    
+    private int[] pickCellPair() {
+        Random r = new Random();
+        
+        int c1 = positionToID(r.nextInt(width), r.nextInt(height));
+        int c2;
+        
+        switch(r.nextInt(3)) {
+            case 0:
+                c2 = c1 + 1;
+                break;
+            case 1:
+                c2 = c1 - 1;
+                break;
+            case 2:
+                c2 = c1 + width;
+                break;
+            default:
+                c2 = c1 - width;
+                break;
+        }
+        
+        int wall = wallID(c1, c2);
+        
+        if(wall == -1) {
+            return pickCellPair();
+        }
+        
+        if(knockedWalls.contains(wall)) {
+            return pickCellPair();
+        }
+        
+        return new int[] {c1, c2};
     }
     
     private int positionToID(int x, int y) {
