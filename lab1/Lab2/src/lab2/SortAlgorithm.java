@@ -1,5 +1,6 @@
 package lab2;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 // Helpers from the book
@@ -49,6 +50,16 @@ public class SortAlgorithm {
 
     protected static boolean isSorted(Comparable[] a) {
         return isSorted(a, 0, a.length - 1);
+    }
+    
+    protected static boolean isSorted(LinkedList<Comparable> a) {
+        return isSorted(a, 0, a.size() - 1);
+    }
+    
+    protected static boolean isSorted(LinkedList<Comparable> a, int lo, int hi) {
+        for (int i = lo + 1; i <= hi; i++)
+            if (less(a.get(i), a.get(i-1))) return false;
+        return true;
     }
 
     protected static boolean isSorted(Comparable[] a, int lo, int hi) {

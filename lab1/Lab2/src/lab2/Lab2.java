@@ -1,6 +1,8 @@
 package lab2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import lab2.priority.FiFoJobStore;
 import lab2.priority.JobRunner;
 import lab2.priority.RRJobStore;
@@ -9,19 +11,26 @@ import lab2.priority.SJFJobStorage;
 public class Lab2 extends SortAlgorithm {
 
     public static void main(String[] args) {
-        System.out.println("Quick Sort");
-        String[] arr = new String[] {"t", "l", "m", "k", "l", "s", "e", "c", "i", "g", "i", "o", "w", "z", "i", "m", "v", "v", "r", "p", "e", "t", "q", "m", "a", "d", "b", "d", "m", "w", "w", "t", "p", "u", "n", "i", "w", "b", "k", "k", "z", "v", "l", "m", "l", "q", "z", "j", "g", "o", "b", "t", "p", "e", "z", "j", "j", "h", "m", "s"};
-        ImprovedQuickSort.sort(arr);
-        System.out.println(Arrays.toString(arr));
-//        calculateFastestM();
-
-
-        // job processing
-        System.out.println("\nJob Processing");
-        int[] jobWaits = generateJobWaits(100);
-        for(int i = 5; i <= 20; i+=5) {
-            testRunners(jobWaits, i);
-        }
+        System.out.println("Natural Merge Sort");
+        LinkedList<Comparable> li = new LinkedList<>(Arrays.asList(3, 4, 2, 1, 7, 5, 8, 9, 0, 6));
+        NaturalMergeSort.sort(li);
+        System.out.println(li.toString());
+        
+        NaturalMergeSort.sort(new LinkedList<>(Arrays.asList(generateArrayOfSize(100000))));
+        
+//        System.out.println("Quick Sort");
+//        String[] arr = new String[] {"t", "l", "m", "k", "l", "s", "e", "c", "i", "g", "i", "o", "w", "z", "i", "m", "v", "v", "r", "p", "e", "t", "q", "m", "a", "d", "b", "d", "m", "w", "w", "t", "p", "u", "n", "i", "w", "b", "k", "k", "z", "v", "l", "m", "l", "q", "z", "j", "g", "o", "b", "t", "p", "e", "z", "j", "j", "h", "m", "s"};
+//        ImprovedQuickSort.sort(arr);
+//        System.out.println(Arrays.toString(arr));
+////        calculateFastestM();
+//
+//
+//        // job processing
+//        System.out.println("\nJob Processing");
+//        int[] jobWaits = generateJobWaits(100);
+//        for(int i = 5; i <= 20; i+=5) {
+//            testRunners(jobWaits, i);
+//        }
     }
     
     private static void testRunners(int[] jobWaits, int timeSlice) {
