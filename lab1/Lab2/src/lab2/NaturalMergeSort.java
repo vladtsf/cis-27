@@ -9,18 +9,22 @@ public class NaturalMergeSort extends SortAlgorithm {
         int N = a.size();
         aux = new Comparable[N];
         
+        int lo, mid, lhi;
+        
         while(!isSorted(a)) {
-            int lo = 0;
-            int mid = seq(a, lo, N - 1);
-            int lhi = seq(a, mid + 1, N - 1);
+            lo = 0;
             
-            while(lhi < N) {
-                merge(a, lo, mid, lhi);
-
-                lo = lhi + 1;
+            do {
                 mid = seq(a, lo, N - 1);
                 lhi = seq(a, mid + 1, N - 1);
-            }
+
+                if(lhi >= N) {
+                    break;
+                }
+                
+                merge(a, lo, mid, lhi);
+                lo = lhi + 1;
+            } while(true);
         }
     }
     
