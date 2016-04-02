@@ -19,10 +19,15 @@ public class Lab2 extends SortAlgorithm {
         // job processing
         System.out.println("\nJob Processing");
         int[] jobWaits = generateJobWaits(100);
-        
-        JobRunner fifo = new JobRunner(new FiFoJobStore());
-        JobRunner rr = new JobRunner(new RRJobStore());
-        JobRunner sjf = new JobRunner(new SJFJobStorage());
+        for(int i = 5; i <= 20; i+=5) {
+            testRunners(jobWaits, i);
+        }
+    }
+    
+    private static void testRunners(int[] jobWaits, int timeSlice) {
+        JobRunner fifo = new JobRunner(new FiFoJobStore(), timeSlice);
+        JobRunner rr = new JobRunner(new RRJobStore(), timeSlice);
+        JobRunner sjf = new JobRunner(new SJFJobStorage(), timeSlice);
         
         fillRunnerWithJobs(fifo, jobWaits);
         fillRunnerWithJobs(rr, jobWaits);
@@ -58,6 +63,7 @@ public class Lab2 extends SortAlgorithm {
             "name=" + name
             + ", avg. turnaround=" + (double) runner.getTotalTurnaround() / runner.count()
             + ", avg. wait=" + (double) runner.getTotalWait()/ runner.count()
+            + ", time slice=" + runner.getTimeSlice()
         );
     }
     
