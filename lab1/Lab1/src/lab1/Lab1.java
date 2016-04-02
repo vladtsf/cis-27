@@ -32,7 +32,7 @@ public class Lab1 {
         new ArithmeticExpressionEvaluator("(4+8)*(6-5)/((3-2)*(2+2))").evaluate();
         
         System.out.println("\n3. Union-Find - Maze");
-        Maze maze = new Maze(10, 10);
+        Maze maze = new Maze(350, 350);
         maze.generate();
         System.out.println(maze);
     }
