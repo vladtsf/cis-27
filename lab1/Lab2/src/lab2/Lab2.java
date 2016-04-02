@@ -16,23 +16,23 @@ public class Lab2 extends SortAlgorithm {
         NaturalMergeSort.sort(li);
         System.out.println(li.toString());
         
-//        System.out.println("Sorting 10^4");
-//        LinkedList<Comparable> ll2 = new LinkedList<>(Arrays.asList(generateArrayOfSize(10000)));
-//        NaturalMergeSort.sort(ll2);
+        System.out.println("Sorting 10^4");
+        LinkedList<Comparable> ll2 = new LinkedList<>(Arrays.asList(generateArrayOfSize(10000)));
+        NaturalMergeSort.sort(ll2);
         
-//        System.out.println("Quick Sort");
-//        String[] arr = new String[] {"t", "l", "m", "k", "l", "s", "e", "c", "i", "g", "i", "o", "w", "z", "i", "m", "v", "v", "r", "p", "e", "t", "q", "m", "a", "d", "b", "d", "m", "w", "w", "t", "p", "u", "n", "i", "w", "b", "k", "k", "z", "v", "l", "m", "l", "q", "z", "j", "g", "o", "b", "t", "p", "e", "z", "j", "j", "h", "m", "s"};
-//        ImprovedQuickSort.sort(arr);
-//        System.out.println(Arrays.toString(arr));
-////        calculateFastestM();
+        System.out.println("\nQuick Sort");
+        String[] arr = new String[] {"t", "l", "m", "k", "l", "s", "e", "c", "i", "g", "i", "o", "w", "z", "i", "m", "v", "v", "r", "p", "e", "t", "q", "m", "a", "d", "b", "d", "m", "w", "w", "t", "p", "u", "n", "i", "w", "b", "k", "k", "z", "v", "l", "m", "l", "q", "z", "j", "g", "o", "b", "t", "p", "e", "z", "j", "j", "h", "m", "s"};
+        ImprovedQuickSort.sort(arr);
+        System.out.println(Arrays.toString(arr));
+//        calculateFastestM();
 //
 //
-//        // job processing
-//        System.out.println("\nJob Processing");
-//        int[] jobWaits = generateJobWaits(100);
-//        for(int i = 5; i <= 20; i+=5) {
-//            testRunners(jobWaits, i);
-//        }
+        // job processing
+        System.out.println("\nJob Processing");
+        int[] jobWaits = generateJobWaits(100);
+        for(int i = 5; i <= 20; i+=5) {
+            testRunners(jobWaits, i);
+        }
     }
     
     private static void testRunners(int[] jobWaits, int timeSlice) {
