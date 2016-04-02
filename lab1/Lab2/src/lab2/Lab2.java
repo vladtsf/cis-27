@@ -4,6 +4,7 @@ import java.util.Arrays;
 import lab2.priority.FiFoJobStore;
 import lab2.priority.JobRunner;
 import lab2.priority.RRJobStore;
+import lab2.priority.SJFJobStorage;
 
 public class Lab2 extends SortAlgorithm {
 
@@ -21,15 +22,19 @@ public class Lab2 extends SortAlgorithm {
         
         JobRunner fifo = new JobRunner(new FiFoJobStore());
         JobRunner rr = new JobRunner(new RRJobStore());
+        JobRunner sjf = new JobRunner(new SJFJobStorage());
         
         fillRunnerWithJobs(fifo, jobWaits);
         fillRunnerWithJobs(rr, jobWaits);
+        fillRunnerWithJobs(sjf, jobWaits);
         
         fifo.process();
         rr.process();
+        sjf.process();
         
         printRunnerStats(fifo, "FiFo");
         printRunnerStats(rr, "Round Robin");
+        printRunnerStats(sjf, "SJF");
     }
     
     private static void fillRunnerWithJobs(JobRunner runner, int[] waits) {
@@ -51,7 +56,8 @@ public class Lab2 extends SortAlgorithm {
     private static void printRunnerStats(JobRunner runner, String name) {
         System.out.println(
             "name=" + name
-            + "\tavg. turnaround=" + (double) runner.getTotalTurnaround() / runner.count()
+            + ", avg. turnaround=" + (double) runner.getTotalTurnaround() / runner.count()
+            + ", avg. wait=" + (double) runner.getTotalWait()/ runner.count()
         );
     }
     

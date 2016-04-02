@@ -3,12 +3,11 @@ package lab2.priority;
 public class JobRunner {
     public static final int TIME_SLICE = 20;
             
-    public static class Job {
+    public static class Job implements Comparable<Job> {
         
         protected int workTime;
         protected int worked;
         protected int waited;
-        protected int idx;
 
         public Job(int workTime) {
             this.workTime = workTime;
@@ -16,12 +15,13 @@ public class JobRunner {
             this.waited = 0;
         }
         
-        public boolean isDone() {
-            return worked >= workTime;
+        @Override
+        public int compareTo(Job other) {
+            return Integer.compare(this.workTime, other.workTime);
         }
         
-        public int getIdx() {
-            return idx;
+        public boolean isDone() {
+            return worked >= workTime;
         }
         
         public int getWorkTime() {
@@ -69,6 +69,16 @@ public class JobRunner {
         
         for(Job job : jobs.getDone()) {
             total += job.getTurnaround();
+        }
+        
+        return total;
+    }
+    
+    public int getTotalWait() {
+        int total = 0;
+        
+        for(Job job : jobs.getDone()) {
+            total += job.getWait();
         }
         
         return total;

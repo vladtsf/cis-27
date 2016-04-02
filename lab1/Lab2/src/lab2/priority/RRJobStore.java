@@ -1,27 +1,21 @@
 package lab2.priority;
 
+import java.util.NoSuchElementException;
 import lab2.priority.JobRunner.*;
 
 public class RRJobStore extends FiFoJobStore {
     @Override
     public void work(int time) {
-//        if(lastRemoved == null) {
-//            lastRemoved = jobs.remove();
-//        }
-//        
-        do {
-            Job job = jobs.getFirst();
-            
+        try {
+            Job job = jobs.remove();
             int spent = job.work(time);
             
-            reportWork(time);
+            reportWork(spent);
             reportWait(spent, job);
             
-            if(job.isDone()) {
-                done.add(jobs.remove());
-            }
-            
-            time -= spent;
-        } while(time > 0 && jobs.size() > 0);
+            (job.isDone() ? done : jobs).add(job);
+        } catch(NoSuchElementException e) {
+            // all done
+        }
     }
 }
