@@ -8,35 +8,32 @@ public class NaturalMergeSort extends SortAlgorithm {
     public static void sort(LinkedList<Comparable> a) {
         int N = a.size();
         aux = new Comparable[N];
-        assert isSorted(a, 0, N - 1);
         
-        sort(a, 0, N);
-    }
-    
-    private static void sort(LinkedList<Comparable> a, int lo, int hi) {
-        int N = a.size();
-        
-        int mid = seq(a, lo, hi);
-        // lhi = local high        
-        int lhi = seq(a, mid + 1, hi);
-        
-        if(lhi >= N) return;
-        
-        // merging two sequences
-        merge(a, lo, mid, lhi);
-        
-        // merging recursively sort the rest
-        sort(a, lhi + 1, hi);
-        
-        // merge left and right sides       
-        merge(a, lo, lhi, hi - 1);
-        
+        while(!isSorted(a)) {
+            int lo = 0;
+            int mid = seq(a, lo, N - 1);
+            int lhi = seq(a, mid + 1, N - 1);
+            
+            while(lhi < N) {
+                merge(a, lo, mid, lhi);
+
+                lo = lhi + 1;
+                mid = seq(a, lo, N - 1);
+                lhi = seq(a, mid + 1, N - 1);
+            }
+        }
     }
     
     private static int seq(LinkedList<Comparable> a, int lo, int hi) {
-        int i;
+        int i = lo;
         
-        for(i = lo; i < hi - 1 && less(a.get(i), a.get(i+1));) i++;
+        while(i < hi - 1) {            
+            if(less(a.get(i+1), a.get(i))) {
+                return i;
+            }
+            
+            i++;
+        }
         
         return i;
     }
@@ -66,5 +63,30 @@ public class NaturalMergeSort extends SortAlgorithm {
 
         // postcondition: a[lo .. hi] is sorted
         assert isSorted(a, lo, hi);
+        
+        // DEBUG, see results below        
+//        System.out.println(lo + " " + mid + " " + hi + ": " + a.toString());
     }
 }
+
+/*
+Natural Merge Sort
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Sorting 10^4
+BUILD SUCCESSFUL (total time: 2 seconds)
+*/
+
+
+/*
+
+DEBUG
+l m h  [list]
+0 1 2: [2, 3, 4, 1, 7, 5, 8, 9, 0, 6]
+3 4 7: [2, 3, 4, 1, 5, 7, 8, 9, 0, 6]
+8 8 9: [2, 3, 4, 1, 5, 7, 8, 9, 0, 6]
+0 2 7: [1, 2, 3, 4, 5, 7, 8, 9, 0, 6]
+8 8 9: [1, 2, 3, 4, 5, 7, 8, 9, 0, 6]
+0 7 8: [0, 1, 2, 3, 4, 5, 7, 8, 9, 6]
+0 8 9: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+*/
