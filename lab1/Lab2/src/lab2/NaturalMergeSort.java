@@ -17,7 +17,7 @@ public class NaturalMergeSort extends SortAlgorithm {
             do {
                 mid = seq(a, lo, N - 1);
                 lhi = seq(a, mid + 1, N - 1);
-
+                
                 if(lhi >= N) {
                     break;
                 }
@@ -39,7 +39,7 @@ public class NaturalMergeSort extends SortAlgorithm {
             i++;
         }
         
-        return i;
+        return i;        
     }
     
     private static void merge(LinkedList<Comparable> a, int lo, int mid, int hi) {
@@ -47,24 +47,17 @@ public class NaturalMergeSort extends SortAlgorithm {
         assert isSorted(a, lo, mid);
         assert isSorted(a, mid+1, hi);
 
-        // copy to aux[]
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a.get(k); 
-        }
+        a.subList(lo, hi + 1).toArray(aux);
 
         // merge back to a[]
         int i = lo, j = mid+1;
         for (int k = lo; k <= hi; k++) {
-            if      (i > mid)              
-                a.set(k,aux[j++]);
-            else if (j > hi)               
-                a.set(k,aux[i++]);
-            else if (less(aux[j], aux[i])) 
-                a.set(k,aux[j++]);
-            else                           
-                a.set(k,aux[i++]);
+            if      (i > mid)              a.set(k,aux[j++-lo]);
+            else if (j > hi)               a.set(k,aux[i++-lo]);
+            else if (less(aux[j-lo], aux[i-lo])) a.set(k,aux[j++-lo]);
+            else                           a.set(k,aux[i++-lo]);
         }
-
+        
         // postcondition: a[lo .. hi] is sorted
         assert isSorted(a, lo, hi);
         
