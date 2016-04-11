@@ -149,8 +149,13 @@ public class LinkedList {
 // Output
 /*
 1. Linked Lists - Dequeue
-1: {first,last}
-2: {first,afterFirst,beforeLast,last}
-3: {last,afterFirst,beforeLast,first}
-4: {afterFirst}
+insertAtBeginning(first): {first}
+insertAtEnd(last): {first,last}
+insertBefore(new LinkedList.DoubleNode("beforeLast"), last): {first,beforeLast,last}
+insertAfter(new LinkedList.DoubleNode("afterFirst"), first): {first,afterFirst,beforeLast,last}
+moveToFront(last): {last,first,afterFirst,beforeLast}
+moveToEnd(first): {last,afterFirst,beforeLast,first}
+remove(first): {last,afterFirst,beforeLast}
+removeFromBeginning(): {afterFirst,beforeLast}
+removeFromEnd(): {afterFirst}
 */
