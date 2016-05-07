@@ -1,5 +1,10 @@
 package lab3;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lab3.spellchecker.Words;
+
 public class Lab3 {
 
     
@@ -19,6 +24,16 @@ public class Lab3 {
         }
         
         System.out.println(tree.toString());
+        
+        // spellchecker
+        try {
+            Words words = new Words();
+            words.read();
+            System.out.println(words.isWord("wowowowow"));
+            System.out.println(words.isWord("porn"));
+        } catch (IOException ex) {
+            System.out.println("Sorry, something went wrong with reading the word dictionary.");
+        }
     }
     
 }

@@ -1,7 +1,7 @@
 package lab3;
 
 // THIS CODE IS TAKEN FROM THE TEXTBOOK WEBSITE
-// AND MODIFIED TO FULFILL THE LAB REQUIREMENTS
+// AND MODIFIED TO SATISFY THE LAB REQUIREMENTS
 
 /******************************************************************************
  *  Compilation:  javac Queue.java
