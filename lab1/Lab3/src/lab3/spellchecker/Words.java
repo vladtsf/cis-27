@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class Words {
-    private String path = "words.txt";
+    private final String path = "words.txt";
+    public static Pattern acceptable = Pattern.compile("(\\w|\\'|\\d)+");
     
     private HashMap<String, Boolean> dictionary;
     
@@ -21,7 +23,7 @@ public class Words {
         }        
     }
     
-    public boolean isWord(String word) {
+    public boolean hasWord(String word) {
         return dictionary.get(word) != null;
     }
 }
