@@ -45,6 +45,7 @@ public class Lab4 {
                 comps[ids[v]].add(v);
             }
             
+            System.out.println("Stongly Connected Components in the Graph on p. 591");
             for(int i = 0; i < cc.count(); i++) {
                 System.out.println(i + ":" + Arrays.toString(comps[i].toArray()));
             }
