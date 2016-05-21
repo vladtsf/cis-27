@@ -5,7 +5,6 @@
  */
 package lab4;
 
-import ABCUtilityCompany.Consultant;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,13 +22,19 @@ public class Lab4 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        cc();
+        cc();
         ABC();
+        SA();
+    }
+    
+    private static void SA() {
+        SentinelAlarmCompany.Consultant sentman = new SentinelAlarmCompany.Consultant();
+        sentman.showServiceTable();
     }
     
     private static void ABC() {
         System.out.println("The ABC Utility Company");
-        ABCUtilityCompany.Consultant abcman = new Consultant();
+        ABCUtilityCompany.Consultant abcman = new ABCUtilityCompany.Consultant();
         System.out.println("Edges in the MST:");
         abcman.minimizePath();
         System.out.println("Total length of the cable:");
