@@ -92,7 +92,7 @@ Total length of the cable:
 a) In terms of cable usage, it doesn't matter which node is the station.
 b) In terms of convenience, I would choose the node that's "in the middle" of the graph.
 One of the ways to programmatically determine which node should be the station is
-1. Go through the list of vertices and build a binary tree whose root is the current node.
+1. Go through the list of vertices and build a binary tree whose root is the current vertex.
 2. Compare the binary trees in terms of their height. 
 2.1. The lowest tree will be balanced better than the others. 
 3. So, choose the root of this tree to be the station.
