@@ -5,13 +5,12 @@
  */
 package lab4;
 
+import ABCUtilityCompany.Consultant;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lab4.digraphs.*;
 
 /**
@@ -24,7 +23,17 @@ public class Lab4 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        cc();
+//        cc();
+        ABC();
+    }
+    
+    private static void ABC() {
+        System.out.println("The ABC Utility Company");
+        ABCUtilityCompany.Consultant abcman = new Consultant();
+        System.out.println("Edges in the MST:");
+        abcman.minimizePath();
+        System.out.println("Total length of the cable:");
+        abcman.totalLength();
     }
     
     private static void cc() {
